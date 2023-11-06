@@ -23,7 +23,7 @@ def getting_a_task(url, api):
 task, token = getting_a_task(url, api)
 print (task)
 
-# Funkcja która zosytała by wywołana przez "functionCalling"
+# Funkcja która zosytałaby wywołana przez "functionCalling"
 def addUsers (name, surname, year):
     user = {
         "name": name,
