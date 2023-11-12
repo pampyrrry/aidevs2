@@ -11,7 +11,7 @@ nameOfTask = "whoami"
 url = "https://zadania.aidevs.pl/token/"+nameOfTask
 print("Podaj OpenAI API KEY: ")
 gptapi = input()
-
+hint = []
 # KROK 2 Funkcje potrzebne do wykonania zadania
 def getting_a_task(url, api):
     api_to_send = {"apikey": api}
@@ -23,35 +23,26 @@ def getting_a_task(url, api):
     task_to_json = get_task.json()
     return task_to_json, token
 
-def gpt_conversation(hint, gptapi):
+#Krok 3 Wykonywanie zadania z wykorzystaniem funcji połaczenia z AIDevs i OpenAI API
+
+while True:
     task, token = getting_a_task(url, api)
     print(task)
-    hint_to_add = task["hint"]
-    hint.append(hint_to_add)
-    print(hint_to_add)
-    # połączenie z ChatGPT aby wysłać artykuł i pytanie
+    hint.append(task["hint"])
+    print(hint)
     print("Łączę z ChatGPT")
     openai.api_key = gptapi
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system",
-             "content": f"Guess My name, Check Hint!. ### Rules if you Know response only Name and Surename, if you don't know response only NO nothing else!. Hint: {', '.join(hint)}"},
-            {"role": "user", "content": "Gues my name"}
+             "content": f"Guess person, Check Hint!. ### Rules if you Know response only Name and Surename, if you don't know response only 0 nothing else!."},
+            {"role": "user", "content": f"Gues a person-  Hint: {hint}"}
         ]
     )
     print(response)
-    print("#######------------#######")
     answer = response['choices'][0]['message']['content']
-    print(answer)
-    return answer, hint
-
-#Krok 3 Wykonywanie zadania z wykorzystaniem funcji połaczenia z AIDevs i OpenAI API
-hint = []
-while True:
-    gpt, hint = gpt_conversation(hint, gptapi)
-    answer = gpt
-    if answer == "NO" or answer == "No":
+    if answer == "0":
         time.sleep(1)
     else:
         task, token = getting_a_task(url, api)
