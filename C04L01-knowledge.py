@@ -72,7 +72,7 @@ print(task)
 question = task.get('question')
 print(question)
 print("Podaj OpenAI API KEY: ")
-gptapi = "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"
+gptapi = input()
 openai.api_key = gptapi
 task, token = getting_a_task(url, api)
 
