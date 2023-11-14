@@ -7,7 +7,7 @@ import time
 print("Podaj Api-key")
 api = input()
 print("Nazwa zadania")
-nameOfTask = "whoami"
+nameOfTask = "knowledge"
 url = "https://zadania.aidevs.pl/token/"+nameOfTask
 
 hint = []
