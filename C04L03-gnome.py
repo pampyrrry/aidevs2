@@ -62,3 +62,4 @@ print(send_response.text)
 print("*"*30)
 
 
+https://cdn.forbot.pl/blog/wp-content/uploads/2022/08/jak_dziala_lodowka-350x233.jpg
